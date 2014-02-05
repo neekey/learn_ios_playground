@@ -7,6 +7,7 @@
 //
 
 #import "NKAppDelegate.h"
+#import "NKViewController.h"
 
 @implementation NKAppDelegate
 
@@ -16,6 +17,15 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    NSLog(@"此时subViews还是空的 %@", self.window.subviews);
+
+    // 添加 rootViewController
+    self.window.rootViewController = [[NKViewController alloc] init];
+
+    NSLog(@"controller的window被赋值为window %d", (self.window == self.window.rootViewController.view.window));
+    NSLog(@"创建了view并添加到window的subViews中，并赋值给controller的view %d", self.window.rootViewController.view == [self.window.subviews objectAtIndex:0]);
+
     return YES;
 }
 
